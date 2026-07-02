@@ -1,11 +1,11 @@
 
 import './App.css'
-import BasicForm from './comonents/BasicForm'
+import FormValidator from './components/FormValidator'
 
 function App() {
 
     return (
-        <BasicForm />
+        <FormValidator />
     )
 
 }

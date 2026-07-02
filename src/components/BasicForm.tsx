@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function BasicForm() {
-
+    const [errorMessage, setErrorMessage] = useState('');
     const [value, setValue] = useState('');
 
 
@@ -10,6 +10,18 @@ function BasicForm() {
         event.preventDefault();
         alert(`Le texte saisie est : ${value}`);
     };
+
+    function validate(input: string) {
+            return input.length > 0;
+        }
+        
+    useEffect(() => {
+        if (!validate(value)) {
+            setErrorMessage('Le champ ne peut être vide.');
+        } else {
+            setErrorMessage('');
+        }
+    }, [value]);
 
 
     return (
@@ -19,6 +31,7 @@ function BasicForm() {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
             />
+            {errorMessage && <div>{errorMessage}</div>}
             <button type='submit'>Envoyer</button>
         </form>
 
